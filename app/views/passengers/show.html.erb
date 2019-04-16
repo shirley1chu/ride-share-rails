@@ -1,0 +1,20 @@
+<h2>Passenger details page</h2>
+
+<p>
+  Name: <%= @passenger.name %>
+</p>
+<p>
+  Phone Number: <%= @passenger.phone_num %>
+</p>
+
+<p>
+  Money Spent: $<%= @passenger.net_expenditures %>
+</p>
+
+<ul>
+    <% @passenger.trips.each do |trip| %>
+    <li>
+    TRIP ID: <%= trip.id %>, TRIP COST: <%= trip.cost %>, TRIP RATING: <%=trip.rating %>, TRIP DRIVER: <%=trip.driver.name %>
+    </li>
+    <% end %>
+<ul>

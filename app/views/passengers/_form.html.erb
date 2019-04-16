@@ -1,0 +1,31 @@
+<% if @passenger.errors.messages.any? %>
+  <section class="error-messages">
+    There were some issues with your submission
+    <ul>
+      <% @passenger.errors.messages.each do |column, problem_list| %>
+        <% problem_list.each do |problem| %>
+          <li>
+            <%= column %>: <%= problem %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<%= form_with model: @passenger, class: 'passenger-form' do |f| %>
+  <p>Please fill out this passenger's information</p>
+
+  <div>
+    <%= f.label :name, "Please enter a name" %>
+    <%= f.text_field :name, placeholder: "A passenger" %>
+  </div>
+
+  <div>
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num, placeholder: "Your phone number here" %>
+  </div>
+
+  <%= f.submit button_text %>
+
+<% end %>
