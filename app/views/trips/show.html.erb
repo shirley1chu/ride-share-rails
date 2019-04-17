@@ -1,0 +1,16 @@
+<h2>Trip details page</h2>
+
+<p>
+  Trip: <%= @trip.id %>
+</p>
+<p>
+  Rating: <%= @trip.rating%>
+</p>
+
+<p>
+  Cost: $<%= @trip.cost %>
+</p>
+
+<%= link_to "Edit", edit_trip_path(@trip) %>
+<%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Do you want to delete this trip?" } %>
+

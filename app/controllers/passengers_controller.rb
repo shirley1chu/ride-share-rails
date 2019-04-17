@@ -60,7 +60,7 @@ class PassengersController < ApplicationController
 
     unless passenger
       head :not_found
-      return
+      returnÇ
     end
 
     passenger.destroy
