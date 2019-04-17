@@ -45,13 +45,6 @@ describe TripsController do
     end
   end
 
-  describe "new" do
-    it "returns status code 200" do
-      get new_trip_path
-      must_respond_with :ok
-    end
-  end
-
   describe "create" do
     it "creates a new trip" do
       # Arrange
@@ -72,11 +65,7 @@ describe TripsController do
 
       trip = Trip.last
       expect(trip.passenger).must_equal trip_data[:trip][:passenger]
-      expect(trip.driver).must_be_instance_of Driver
-
-      # trip_data[:trip].keys.each do |key|
-      #   expect(trip.attributes[key]).must_equal trip_data[:trip][key]
-      # end
+      assert_includes(Driver.all, trip.driver, msg = nil)
     end
 
     it "sends back bad_request if no trip data is sent" do
@@ -104,7 +93,7 @@ describe TripsController do
     end
 
     it "responds with redirect for a fake trip" do
-      trip_id = trip.last.id + 1
+      trip_id = Trip.last.id + 1
       get edit_trip_path(trip_id)
       must_respond_with :redirect
       must_redirect_to trips_path
@@ -115,7 +104,7 @@ describe TripsController do
     let(:trip_data) {
       {
         trip: {
-          name: "updated name",
+          rating: 5,
         },
       }
     }
@@ -133,22 +122,21 @@ describe TripsController do
       must_redirect_to trip_path(@trip)
 
       @trip.reload
-      expect(@trip.name).must_equal(trip_data[:trip][:name])
+      expect(@trip.rating).must_equal(trip_data[:trip][:rating])
     end
 
     it "responds with NOT FOUND for a fake trip" do
-      trip_id = trip.last.id + 1
+      trip_id = Trip.last.id + 1
       patch trip_path(trip_id), params: trip_data
       must_respond_with :not_found
     end
 
-    it "responds with BAD REQUEST for bad data" do
+    it "responds with BAD REQUEST for invalid rating" do
       # Arrange
-      trip_data[:trip][:name] = ""
+      trip_data[:trip][:rating] = 464664
 
       # Assumptions
       @trip.assign_attributes(trip_data[:trip])
-      expect(@trip).wont_be :valid?
       @trip.reload
 
       # Act
@@ -164,13 +152,13 @@ describe TripsController do
       # Act
       expect {
         delete trip_path(@trip)
-      }.must_change "trip.count", -1
+      }.must_change "Trip.count", -1
 
       # Assert
       must_respond_with :redirect
       must_redirect_to trips_path
 
-      after_trip = trip.find_by(id: @trip.id)
+      after_trip = Trip.find_by(id: @trip.id)
       expect(after_trip).must_be_nil
     end
 
@@ -179,12 +167,12 @@ describe TripsController do
       trip_id = 123456
 
       # Assumptions
-      expect(trip.find_by(id: trip_id)).must_be_nil
+      expect(Trip.find_by(id: trip_id)).must_be_nil
 
       # Act
       expect {
         delete trip_path(trip_id)
-      }.wont_change "trip.count"
+      }.wont_change "Trip.count"
 
       # Assert
       must_respond_with :not_found

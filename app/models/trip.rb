@@ -4,4 +4,6 @@ class Trip < ApplicationRecord
 
   validates :passenger, presence: true
   validates :driver, presence: true
+  # validates :rating, format: { with: /\b[1-5]\b/,
+  #                              message: "only integer 1 - 5" }
 end

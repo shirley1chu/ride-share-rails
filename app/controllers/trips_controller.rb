@@ -38,7 +38,7 @@ class TripsController < ApplicationController
 
   def edit
     trip_id = params[:id]
-    @trip = trip.find_by(id: trip_id)
+    @trip = Trip.find_by(id: trip_id)
 
     unless @trip
       redirect_to trips_path
@@ -46,7 +46,7 @@ class TripsController < ApplicationController
   end
 
   def update
-    @trip = trip.find_by(id: params[:id])
+    @trip = Trip.find_by(id: params[:id])
 
     unless @trip
       head :not_found
@@ -64,7 +64,7 @@ class TripsController < ApplicationController
   def destroy
     trip_id = params[:id]
 
-    trip = trip.find_by(id: trip_id)
+    trip = Trip.find_by(id: trip_id)
 
     unless trip
       head :not_found
@@ -77,4 +77,8 @@ class TripsController < ApplicationController
   end
 
   private
+
+  def trip_params
+    return params.require(:trip).permit(:rating)
+  end
 end

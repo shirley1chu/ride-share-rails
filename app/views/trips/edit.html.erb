@@ -1,0 +1,26 @@
+<% if @trip.errors.messages.any? %>
+  <section class="error-messages">
+    There were some issues with your submission
+    <ul>
+      <% @trip.errors.messages.each do |column, problem_list| %>
+        <% problem_list.each do |problem| %>
+          <li>
+            <%= column %>: <%= problem %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<%= form_with model: @trip, class: 'trip-form' do |f| %>
+  <p>Please fill out this trip's information</p>
+
+  <div>
+    <%= f.label :rating, "Please enter a rating" %>
+    <%= f.text_field :rating, placeholder: "Enter 1 - 5" %>
+  </div>
+
+  <%= f.submit "Edit Trip" %>
+
+<% end %>
