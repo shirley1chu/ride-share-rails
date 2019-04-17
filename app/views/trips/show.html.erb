@@ -8,7 +8,19 @@
 </p>
 
 <p>
+  Date: $<%= @trip.date %>
+</p>
+
+<p>
   Cost: $<%= @trip.cost %>
+</p>
+
+<p>
+  Driver: <%= @trip.driver.name %>
+</p>
+
+<p>
+  Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger) %>
 </p>
 
 <%= link_to "Edit", edit_trip_path(@trip) %>
