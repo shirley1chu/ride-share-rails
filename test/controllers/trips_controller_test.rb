@@ -131,6 +131,7 @@ describe TripsController do
       must_respond_with :not_found
     end
 
+    # need to fix
     it "responds with BAD REQUEST for invalid rating" do
       # Arrange
       trip_data[:trip][:rating] = 464664
