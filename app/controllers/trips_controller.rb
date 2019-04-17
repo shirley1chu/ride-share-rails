@@ -22,8 +22,13 @@ class TripsController < ApplicationController
   end
 
   def create
-    puts "successfully created"
-    @trip = Trip.new()
+    if params[:passenger_id]
+        passenger = Passenger.find_by(id: params[:passenger_id])
+        if passenger
+        @trip = Trip.new(passenger: passenger, driver: )
+    else 
+        head :not_found
+        
 
     if @trip.save
       redirect_to trips_path
