@@ -58,22 +58,21 @@ describe TripsController do
       trip_data = {
         trip: {
           passenger: @passenger,
-          driver: @driver,
         },
       }
 
       # Act
       expect {
-        post trips_path, params: trip_data
+        post passenger_trips_path(@passenger), params: trip_data
       }.must_change "Trip.count", +1
 
       # Assert
       must_respond_with :redirect
-      must_redirect_to trips_path
+      must_redirect_to passenger_trips_path(@passenger)
 
       trip = Trip.last
       expect(trip.passenger).must_equal trip_data[:trip][:passenger]
-      expect(trip.driver).must_equal trip_data[:trip][:driver]
+      expect(trip.driver).must_be_instance_of Driver
 
       # trip_data[:trip].keys.each do |key|
       #   expect(trip.attributes[key]).must_equal trip_data[:trip][key]

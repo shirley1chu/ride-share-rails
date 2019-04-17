@@ -23,17 +23,16 @@ class TripsController < ApplicationController
 
   def create
     if params[:passenger_id]
-        passenger = Passenger.find_by(id: params[:passenger_id])
-        if passenger
-        @trip = Trip.new(passenger: passenger, driver: )
-    else 
+      passenger = Passenger.find_by(id: params[:passenger_id])
+      if passenger
+        # randomly assign a driver, because we're assuming all drivers in the db are available
+        # because it seems like adding an availiability column and validing available/unavailiable when the
+        # trip ends seems beyond the scope of this project?
+        @trip = Trip.create(passenger: passenger, driver: Driver.all.sample)
+      else
         head :not_found
-        
-
-    if @trip.save
-      redirect_to trips_path
-    else
-      render :new, status: :bad_request
+      end
+      redirect_to passenger_trips_path(passenger)
     end
   end
 
