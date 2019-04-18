@@ -1,7 +1,7 @@
 <h1>Welcome to the Passengers List</h1>
 
 <p>There are <%= @passengers.length %> passengers in our system</p>
-
+<%= link_to "Add Passenger", new_passenger_path(@passenger) %>
 
 <ul>
   <% @passengers.each do |passenger| %>

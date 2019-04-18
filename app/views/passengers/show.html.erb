@@ -11,10 +11,16 @@
   Money Spent: $<%= @passenger.net_expenditures %>
 </p>
 
-<ul>
-    <% @passenger.trips.each do |trip| %>
-    <li>
-    TRIP ID: <%= trip.id %>, TRIP COST: <%= trip.cost %>, TRIP RATING: <%=trip.rating %>, TRIP DRIVER: <%=trip.driver.name %>
-    </li>
-    <% end %>
-<ul>
+<p class='actions'>
+ <%= link_to "Edit", edit_passenger_path(@passenger) %>
+ <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: { confirm: "Do you want to delete #{@passenger.name}?" } %>
+<p>
+
+<p>
+  <%= link_to "View Trips", passenger_trips_path(@passenger)%>
+</p>
+
+<p>
+  <%= link_to "Request Trip", passenger_trips_path(@passenger), method: :post %>
+</p>
+  

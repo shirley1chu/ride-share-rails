@@ -28,7 +28,7 @@ class TripsController < ApplicationController
         # randomly assign a driver, because we're assuming all drivers in the db are available
         # because it seems like adding an availiability column and validing available/unavailiable when the
         # trip ends seems beyond the scope of this project?
-        @trip = Trip.create(passenger: passenger, driver: Driver.all.sample)
+        @trip = Trip.create(passenger: passenger, driver: Driver.all.sample, date: Time.now)
       else
         head :not_found
       end
@@ -79,6 +79,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    return params.require(:trip).permit(:rating)
+    return params.require(:trip).permit(:rating, :date)
   end
 end
