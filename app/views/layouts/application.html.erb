@@ -9,7 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+View a list of all passengers
+View a list of all drivers
+Create a new passenger
+Create a new driver
+
   <body>
+    <nav>
+      <ul>
+        <li> <%= link_to "All Passengers", passengers_path %> </li>
+        <li> <%= link_to "New Passenger", new_passenger_path %> </li>
+        <li> <%= link_to "All Drivers", drivers_path %> </li>
+        <li> <%= link_to "New Driver", new_driver_path %> </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
