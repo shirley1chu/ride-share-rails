@@ -1,0 +1,31 @@
+<% if @driver.errors.messages.any? %>
+  <section class="error-messages">
+    There were some issues with your submission
+    <ul>
+      <% @driver.errors.messages.each do |column, problem_list| %>
+        <% problem_list.each do |problem| %>
+          <li>
+            <%= column %>: <%= problem %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+  <p>Please fill out this driver's information</p>
+
+  <div>
+    <%= f.label :name, "Please enter a name" %>
+    <%= f.text_field :name, placeholder: "A driver" %>
+  </div>
+
+  <div>
+    <%= f.label :vin %>
+    <%= f.text_field :vin, placeholder: "Your vin number here" %>
+  </div>
+
+  <%= f.submit button_text %>
+
+<% end %>

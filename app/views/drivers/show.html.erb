@@ -1,0 +1,24 @@
+<h2>Driver details page</h2>
+
+<p>
+  Name: <%= @driver.name %>
+</p>
+<p>
+  Phone Number: <%= @driver.vin %>
+</p>
+
+<p>
+  Total Earnings: $<%= @driver.total_earnings %>
+</p>
+
+<p>
+  Average Rating: $<%= @driver.avg_rating %>
+</p>
+
+<ul>
+    <% @driver.trips.each do |trip| %>
+    <li>
+    TRIP ID: <%= trip.id %>, TRIP COST: <%= trip.cost %>, TRIP RATING: <%=trip.rating %>, PASSENGER NAME: <%=trip.passenger.name %>
+    </li>
+    <% end %>
+<ul>
