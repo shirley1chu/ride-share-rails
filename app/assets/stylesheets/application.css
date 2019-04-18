@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ <nav class="navbar navbar-light bg-light">
+ <a class="navbar-brand" href="/">Ride Share</a>
+</nav>
