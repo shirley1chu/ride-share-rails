@@ -1,9 +1,31 @@
 class TripsController < ApplicationController
+  # def index
+  #   if params[:passenger_id] || params[:driver_id]
+  #     passenger = Passenger.find_by(id: params[:passenger_id])
+  #     if passenger
+  #       @trips = passenger.trips
+  #     else
+  #       head :not_found
+  #       return
+  #     end
+  #   elsif params[:driver_id]
+  #     driver = Driver.find_by(id: params[:driver_id])
+  #     if driver
+  #       @trips = driver.trips
+  #     else
+  #       head :not_found
+  #       return
+  #     end
+  #   else
+  #     @trips = Trip.all
+  #   end
+  # end
+
   def index
-    if params[:passenger_id]
-      passenger = Passenger.find_by(id: params[:passenger_id])
-      if passenger
-        @trips = passenger.trips
+    if params[:passenger_id] || params[:driver_id]
+      person = Passenger.find_by(id: params[:passenger_id]) || Driver.find_by(id: params[:driver_id])
+      if person
+        @trips = person.trips
       else
         head :not_found
         return

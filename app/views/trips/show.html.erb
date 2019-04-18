@@ -19,7 +19,7 @@
   <%# logic to handle deleted driver %>
   <% if @trip.driver%>
     <%# will fix once driver view is updated %>
-    Driver: <%= @trip.driver.name %>
+    Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver) %>
   <% else %>
     Driver: This driver no longer exists in the system
   <% end %>

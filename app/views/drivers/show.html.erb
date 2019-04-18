@@ -4,7 +4,7 @@
   Name: <%= @driver.name %>
 </p>
 <p>
-  Phone Number: <%= @driver.vin %>
+  VIN: <%= @driver.vin %>
 </p>
 
 <p>
@@ -12,13 +12,16 @@
 </p>
 
 <p>
-  Average Rating: $<%= @driver.avg_rating %>
+  Average Rating: <%= @driver.avg_rating %>
 </p>
 
-<ul>
-    <% @driver.trips.each do |trip| %>
-    <li>
-    TRIP ID: <%= trip.id %>, TRIP COST: <%= trip.cost %>, TRIP RATING: <%=trip.rating %>, PASSENGER NAME: <%=trip.passenger.name %>
-    </li>
-    <% end %>
-<ul>
+<p class='actions'>
+ <%= link_to "Edit", edit_driver_path(@driver) %>
+ <%= link_to "Delete", driver_path(@driver), method: :delete, data: { confirm: "Do you want to delete #{@driver.name}?" } %>
+<p>
+
+<p>
+  <%= link_to "View Trips", driver_trips_path(@driver)%>
+</p>
+
+

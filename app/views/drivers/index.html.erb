@@ -1,7 +1,7 @@
 <h1>Welcome to the Drivers List</h1>
 
 <p>There are <%= @drivers.length %> drivers in our system</p>
-
+<%= link_to "Add Driver", new_driver_path %>
 
 <ul>
   <% @drivers.each do |driver| %>
