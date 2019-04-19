@@ -14,3 +14,39 @@
  *= require_self
  */
 
+
+ body {
+    font-family: 'Raleway', sans-serif;
+    background-color: black;
+    color: white;
+    display: grid; 
+ }
+
+ a:link {
+    text-decoration: none;
+    color: inherit 
+ }
+
+ a:visited {
+    color: inherit
+ }
+
+ nav {
+     background-color: teal;
+     padding-top: 5vh
+ }
+
+ .guber {
+     font-size: 3em;
+     font-weight: bold;
+     text-align: center;
+     padding-bottom: 2vh
+ }
+ nav ul {
+     display: flex;
+     padding-right: 1vw;
+     justify-content: space-between;
+     list-style: none;
+     align-items: center 
+ }
+

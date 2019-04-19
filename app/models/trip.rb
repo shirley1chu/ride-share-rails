@@ -4,6 +4,5 @@ class Trip < ApplicationRecord
 
   validates :passenger, presence: true
   validates :driver, presence: true
-  # validates :rating, format: { with: /\b[1-5]\b/,
-  #                              message: "only integer 1 - 5" }
+  validates :rating, :allow_nil => true, numericality: { greater_than: 0, less_than: 6 }
 end
