@@ -1,5 +1,4 @@
 require "test_helper"
-require "pry"
 
 # validation for name and phone number
 
